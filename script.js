@@ -1,0 +1,1 @@
+// Futuras funcionalidades JavaScript pueden ir aquí.
