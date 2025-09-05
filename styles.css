@@ -34,15 +34,23 @@ hr {
     border-top: 1px solid #ccc;
     margin: 40px 0;
 }
-container{
+.container{
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
-lista1{
-     list-style: none;
+.lista1{
+    list-style: none;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+}
+
+.lista1 li {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 0.9em;
 }
