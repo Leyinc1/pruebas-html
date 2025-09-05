@@ -1,56 +1,229 @@
+/* --- VARIABLES Y ESTILOS GLOBALES --- */
+:root {
+    --bg-dark: #2c3e50;
+    --bg-light: #ecf0f1;
+    --card-bg: #ffffff;
+    --primary-color: #3498db;
+    --text-dark: #34495e;
+    --text-light: #ecf0f1;
+    --border-color: #bdc3c7;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: sans-serif;
-    margin: 40px;
-    line-height: 1.5;
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
 }
 
-h1, h2 {
-    color: #333;
-}
-
-h1 {
-    font-size: 2em;
-}
-
-h2 {
-    font-size: 1.5em;
-    margin-top: 30px;
-}
-
-ul {
-    padding-left: 20px;
-}
-
-li {
-    margin-bottom: 5px;
+html {
+    scroll-behavior: smooth;
 }
 
 a {
-    color: #0066cc;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #2980b9;
 }
 
 hr {
     border: none;
-    border-top: 1px solid #ccc;
-    margin: 40px 0;
+    border-top: 1px solid var(--border-color);
+    opacity: 0.3;
+    margin: 20px 0;
 }
-.container{
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+
+/* --- DISEÑO PRINCIPAL (Layout) --- */
+.portfolio-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
 }
-.lista1{
+
+/* --- BARRA LATERAL --- */
+.sidebar {
+    width: 320px;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    padding: 40px 20px;
+    position: fixed;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.sidebar-content h1 {
+    margin-bottom: 5px;
+    font-size: 2em;
+    color: var(--text-light);
+}
+
+.sidebar-content .job-title {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid var(--primary-color);
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+/* --- Menú de Navegación de la Barra Lateral --- */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.nav-button {
+    color: var(--text-light);
+    background-color: transparent;
+    border: 2px solid transparent;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: rgba(236, 240, 241, 0.1);
+    border-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+.contact-info a {
+    color: var(--text-light);
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.main-content {
+    margin-left: 320px;
+    padding: 40px;
+    width: calc(100% - 320px);
+}
+
+.main-content h2 {
+    color: var(--text-dark);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* --- TARJETAS DE CONTENIDO (Cards) --- */
+.card {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.2s; }
+.card:nth-child(4) { animation-delay: 0.3s; }
+.card:nth-child(5) { animation-delay: 0.4s; }
+
+/* --- LISTA DE TECNOLOGÍAS --- */
+.tech-list {
     list-style: none;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
 }
 
-.lista1 li {
-    background-color: #e0e0e0;
-    color: #333;
-    padding: 5px 15px;
-    border-radius: 15px;
+.tech-list li {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    padding: 8px 18px;
+    border-radius: 20px;
     font-size: 0.9em;
+    font-weight: bold;
+}
+
+/* --- Lista de Enlaces --- */
+.link-list {
+    list-style: none;
+    padding: 0;
+}
+
+.link-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.link-list li:last-child {
+    border-bottom: none;
+}
+
+/* --- ANIMACIÓN KEYFRAMES --- */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- AÑADIDO: DISEÑO RESPONSIVO (Para móviles y tablets) --- */
+@media (max-width: 992px) {
+    .portfolio-container {
+        /* Cambia la dirección de flex a columna */
+        flex-direction: column;
+    }
+
+    .sidebar {
+        /* La barra lateral ya no es fija, se convierte en un encabezado */
+        position: static;
+        width: 100%;
+        height: auto;
+        padding-bottom: 20px;
+    }
+
+    .sidebar-nav {
+        /* Los botones ahora van en fila y permiten scroll horizontal si no caben */
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px 0;
+    }
+
+    .nav-button {
+        flex-shrink: 0; /* Evita que los botones se encojan */
+    }
+
+    .main-content {
+        /* El contenido principal ahora ocupa todo el ancho y no tiene margen */
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+    }
 }
